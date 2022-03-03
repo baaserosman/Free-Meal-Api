@@ -6,21 +6,21 @@ fetchMealArea();
 async function fetchMealArea() {
   let link = `https://www.themealdb.com/api/json/v1/1/random.php`;
   const mealArea = await fetch(link);
-  console.log(mealArea);
+  // console.log(mealArea);
   const data = await mealArea.json();
-  console.log(data);
+  // console.log(data);
   renderMealArea(data);
-  console.log(data);
+  // console.log(data);
 }
 
 function renderMealArea(data) {
   let mealsDisplay = document.querySelector(".meals-div");
-  console.log(data);
+  // console.log(data);
   data.meals.forEach((item) => {
-    const { strMealThumb, strMeal, idMeal } = item;
-    console.log(strMealThumb, strMeal);
+    const { strMealThumb, strMeal } = item;
+    // console.log(strMealThumb, strMeal);
     mealsDisplay.innerHTML += `
-    <div class="card bg-success" style="width: 28rem">
+    <div class="card bg-success" style="width:30rem">
         <img src=${strMealThumb} class="card-img-top" alt="..." />
         <div class="card-body text-center">
           <h5 class="card-title text-warning">${strMeal}</h5>
@@ -44,7 +44,7 @@ btn.addEventListener("click", () => {
 const fetchMeal = async function (name) {
   let url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${name}`;
   const meals = await fetch(url);
-  console.log(meals);
+  // console.log(meals);
   const data = await meals.json();
   renderMeal(data);
 };
@@ -53,8 +53,8 @@ function renderMeal(data) {
   let mealsDisplay = document.querySelector(".meals-div");
   mealsDisplay.innerHTML = "";
   data.meals.forEach((item) => {
-    const { strMealThumb, strMeal, strInstructions } = item;
-    // console.log(strMealThumb, strMeal);
+    const { strMealThumb, strMeal, strInstructions, strYoutube } = item;
+    console.log(strMeal, strYoutube);
 
     mealsDisplay.innerHTML += `
      <div class="card bg-success" style="width: 18rem">
@@ -98,14 +98,17 @@ function renderMeal(data) {
                  <div class="modal-footer">
                    <button
                      type="button"
-                     class="btn btn-secondary"
+                     id = "close"
+                     class="btn "
                      data-bs-dismiss="modal"
                    >
                      Close
                    </button>
-                   <button type="button" class="btn btn-primary">
-                     Understood
-                   </button>
+                   <a href="${strYoutube}" target="_blank">
+                    <button href="" type="button" id="understood" class="btn">
+                     Watch Video
+                    </button>
+                   </a>
                  </div>
                </div>
              </div>
