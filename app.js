@@ -20,10 +20,11 @@ function renderMealArea(data) {
     const { strMealThumb, strMeal, idMeal } = item;
     console.log(strMealThumb, strMeal);
     mealsDisplay.innerHTML += `
-    <div class="card bg-success" style="width: 18rem">
+    <div class="card bg-success" style="width: 28rem">
         <img src=${strMealThumb} class="card-img-top" alt="..." />
         <div class="card-body text-center">
-          <h5 class="card-title">${strMeal}</h5>
+          <h5 class="card-title text-warning">${strMeal}</h5>
+          <p class="card-title text-white">You are viewing the dish of the day. If you want to see other options, you can search from the input section above.</p>
         </div>
       </div>
       `;
@@ -83,7 +84,7 @@ function renderMeal(data) {
              <div class="modal-dialog">
                <div class="modal-content">
                  <div class="modal-header">
-                   <h5 class="modal-title" id="staticBackdropLabel">
+                   <h5 class="modal-title text-warning" id="staticBackdropLabel">
                     ${strMeal}
                    </h5>
                    <button
