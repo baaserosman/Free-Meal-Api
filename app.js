@@ -20,7 +20,7 @@ function renderMealArea(data) {
     const { strMealThumb, strMeal, strInstructions, strYoutube } = item;
     // console.log(strMealThumb, strMeal);
     mealsDisplay.innerHTML += `
-    <div class="card bg-success" style="width:30rem">
+    <div class="card bg-success" style="width:25rem">
         <img src=${strMealThumb} class="card-img-top" alt="..." />
         <div class="card-body text-center">
           <h5 class="card-title text-warning">${strMeal}</h5>
@@ -103,21 +103,22 @@ const fetchMeal = async function (name) {
 function renderMeal(data) {
   let mealsDisplay = document.querySelector(".meals-div");
   mealsDisplay.innerHTML = "";
-  data.meals.forEach((item) => {
-    const { strMealThumb, strMeal, strInstructions, strYoutube } = item;
-    console.log(strMeal, strYoutube);
+  data.meals.forEach((item, i) => {
+    console.log(item);
+    // const { strMealThumb, strMeal, strInstructions, strYoutube } = item;
+    // console.log(strMeal, strYoutube);
 
     mealsDisplay.innerHTML += `
      <div class="card bg-success" style="width: 18rem">
-         <img src=${strMealThumb} class="card-img-top" alt="..." />
+         <img src=${item.strMealThumb} class="card-img-top" alt="..." />
          <div class="card-body text-center">
-           <h5 class="card-title">${strMeal}</h5>
+           <h5 class="card-title">${item.strMeal}</h5>
 
             <button
              type="button"
              class="btn btn-warning"
              data-bs-toggle="modal"
-             data-bs-target="#staticBackdrop"
+             data-bs-target="#staticBackdrop${i}"
            >
              Get Receipe
            </button>
@@ -125,7 +126,7 @@ function renderMeal(data) {
            <!-- Modal -->
            <div
              class="modal fade"
-             id="staticBackdrop"
+             id="staticBackdrop${i}"
              data-bs-backdrop="static"
              data-bs-keyboard="false"
              tabindex="-1"
@@ -136,7 +137,7 @@ function renderMeal(data) {
                <div class="modal-content">
                  <div class="modal-header">
                    <h5 class="modal-title text-warning" id="staticBackdropLabel">
-                    ${strMeal}
+                    ${item.strMeal}
                    </h5>
                    <button
                      type="button"
@@ -145,7 +146,7 @@ function renderMeal(data) {
                      aria-label="Close"
                    ></button>
                  </div>
-                 <div class="modal-body">${strInstructions}</div>
+                 <div class="modal-body">${item.strInstructions}</div>
                  <div class="modal-footer">
                    <button
                      type="button"
@@ -155,7 +156,7 @@ function renderMeal(data) {
                    >
                      Close
                    </button>
-                   <a href="${strYoutube}" target="_blank">
+                   <a href="${item.strYoutube}" target="_blank">
                     <button href="" type="button" id="understood" class="btn">
                      Watch Video
                     </button>
