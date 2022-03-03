@@ -1,34 +1,34 @@
 //************** WINDOW ONLOAD ****************
 
 // window.addEventListener("DOMContentLoaded", renderMealArea);
-// fetchMealArea();
-// async function fetchMealArea(url) {
-//   let area = name.şnput || "";
-//   let url = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`;
-//   const mealArea = await fetch(url);
-//   console.log(mealArea);
-//   const data = await mealArea.json();
-//   console.log(data);
-//   renderMealArea(data);
-//   console.log(data);
-// }
-// function renderMealArea(data) {
-//   let mealsDisplay = document.querySelector(".meals-div");
-//   console.log(data);
-//   data.meals.forEach((item) => {
-//     const { strMealThumb, strMeal, idMeal } = item;
-//     console.log(strMealThumb, strMeal);
+fetchMealArea();
 
-//     mealsDisplay.innerHTML += `
-//     <div class="card bg-success" style="width: 18rem">
-//         <img src=${strMealThumb} class="card-img-top" alt="..." />
-//         <div class="card-body text-center">
-//           <h5 class="card-title">${strMeal}</h5>
-//         </div>
-//       </div>
-//       `;
-//   });
-// }
+async function fetchMealArea() {
+  let link = `https://www.themealdb.com/api/json/v1/1/random.php`;
+  const mealArea = await fetch(link);
+  console.log(mealArea);
+  const data = await mealArea.json();
+  console.log(data);
+  renderMealArea(data);
+  console.log(data);
+}
+
+function renderMealArea(data) {
+  let mealsDisplay = document.querySelector(".meals-div");
+  console.log(data);
+  data.meals.forEach((item) => {
+    const { strMealThumb, strMeal, idMeal } = item;
+    console.log(strMealThumb, strMeal);
+    mealsDisplay.innerHTML += `
+    <div class="card bg-success" style="width: 18rem">
+        <img src=${strMealThumb} class="card-img-top" alt="..." />
+        <div class="card-body text-center">
+          <h5 class="card-title">${strMeal}</h5>
+        </div>
+      </div>
+      `;
+  });
+}
 
 //! ///////////////////////////////////////////////
 //******* SELECT ***********
